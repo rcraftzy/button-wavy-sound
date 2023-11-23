@@ -4,9 +4,9 @@ import { useRef, useState } from "react";
 
 const RippleButton = () => {
   const [isActive, setIsActive] = useState(false);
-  const sound = new window.Audio("/Cartoon.mp3");
-  const [audio, setAudio] = useState(sound);
+  const audioRef = useRef();
   const buttonRef = useRef(null);
+
   const handleMouseOver = (e) => {
     const button = e.currentTarget;
     const rect = button.getBoundingClientRect();
@@ -18,7 +18,7 @@ const RippleButton = () => {
   };
 
   const handleClick = () => {
-    isActive ? audio.pause() : audio.play();
+    isActive ? audioRef.current.pause() : audioRef.current.play();
     setIsActive(!isActive);
   };
 
@@ -33,6 +33,13 @@ const RippleButton = () => {
         <div className={isActive ? "wavy wavy-transition" : "wavy-none"} />
         <div className={`${styles.circle}`}></div>
       </button>
+      <audio ref={audioRef}>
+        <source
+          src="/Cartoon.mp3"
+          type="audio/mp3"
+        />
+        Tu navegador no soporta la etiqueta de audio.
+      </audio>
     </div>
   );
 };
