@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 
 const RippleButton = () => {
   const [isActive, setIsActive] = useState(false);
-  const sound = new Audio("/Cartoon.mp3");
+  const sound = new window.Audio("/Cartoon.mp3");
   const [audio, setAudio] = useState(sound);
   const buttonRef = useRef(null);
   const handleMouseOver = (e) => {
