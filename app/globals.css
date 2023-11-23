@@ -17,11 +17,61 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #222;
+}
+
+.wavy-none {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.wavy-none::before {
+  content: "aaaaaaaaaaaaaa";
+  position: absolute;
+  z-index: 1;
+  font-size: 5rem;
+  color: transparent;
+  top: -80px;
+  left: 0px;
+  text-decoration-color: #000;
+  text-decoration-line: underline;
+}
+
+.wavy {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.wavy::before {
+  content: "aaaaaaaaaaaaaa";
+  position: absolute;
+  z-index: 1;
+  font-size: 5rem;
+  color: transparent;
+  top: -86px;
+  left: 0px;
+  text-decoration-style: wavy;
+  text-decoration-color: #000;
+  text-decoration-line: underline;
+  animation: animate 2s linear infinite;
+  transition: text-decoration-style 0.3s ease-in-out;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(-71px);
+  }
 }
